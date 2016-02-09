@@ -107,18 +107,18 @@ if (typeof Object.create !== "function") {
 
         checkBrowser : function () {
             var base = this,
-            		   isTouch,
-            	ua = window.navigator.userAgent,
-            	msie = ua.indexOf("MSIE ");
+                       isTouch,
+                ua = window.navigator.userAgent,
+                msie = ua.indexOf("MSIE ");
 
             base.$support3d = false;
             isTouch = "ontouchstart" in window || window.navigator.msMaxTouchPoints;
 
-	        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-				support3d = false;
-	        } else {
-	        	support3d = true;
-	        };
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                support3d = false;
+            } else {
+                support3d = true;
+            };
 
             base.browser = {
                 "support3d" : support3d,
@@ -164,9 +164,9 @@ if (typeof Object.create !== "function") {
 
             buttonsWrapper.on("touchstart.qgControls mousedown.qgControls", "button[class^=\"qg\"]", function (event) {
                 event.preventDefault();
-            	base.$qgWrapper.css(
-	            	base.addCssSpeed(base.options.slideSpeed)
-	            	)
+                base.$qgWrapper.css(
+                    base.addCssSpeed(base.options.slideSpeed)
+                    )
             });
 
             buttonsWrapper.on("touchend.qgControls mouseup.qgControls", "button[class^=\"qg\"]", function (event) {
@@ -204,70 +204,74 @@ if (typeof Object.create !== "function") {
             base.$activeItem = base.$qgWrapper.find('.active');
 
             base.$qgWrapper.css( 
-            	base.removeTransition()
-            	)
+                base.removeTransition()
+                )
 
             if ($(window).width() >= 768) {
 
                 base.$qgWrapper.css({
                     'width': base.$itemWidth * (base.itemsAmount+3),
-                    'height' : base.$itemWidth * 2 + base.$columnGap
+                    // drin: reduced height for main container
+                    'height' : (base.$imageWidth * 2 + base.$columnGap) * 1/4
                     });
                 base.transitionItemDesc();
                 if (base.browser.support3d === true) {
                     base.$qgWrapper.css(
-                    	base.doTranslate(base.$pixelDesctop)
-                    	);
+                        base.doTranslate(base.$pixelDesctop)
+                        );
                 } else {
-                	base.$qgWrapper.animate({
-                		'left' : base.$pixelDesctop
-                		});
+                    base.$qgWrapper.animate({
+                        'left' : base.$pixelDesctop
+                        });
                 }
 
             } else if ($(window).width() >= 480) {
 
                 base.$qgWrapper.css({
                     'width': base.$widthWrapperOuter * (base.itemsAmount+1),
-                    'height' : base.$widthWrapperOuter*2/3
+                    // drin: reduced height for main container
+                    'height' : base.$widthWrapperOuter*2/3 * 1/4
                     });
                 base.$qgItems.css({
                     'width': base.$widthWrapperOuter
                     });
                 base.$qgItems.find(".image-block").css({
                     'width': base.$widthWrapperOuter*2/3,
-                    'height': base.$widthWrapperOuter*2/3
+                    'height': base.$widthWrapperOuter
                     });
                 if (base.browser.support3d === true) {
                     base.$qgWrapper.css(
-                    	base.doTranslate(base.$pixelTablet)
-                    	);
+                        base.doTranslate(base.$pixelTablet)
+                        );
                 } else {
-                	base.$qgWrapper.animate({
-                		'left' : base.$pixelTablet
-                		});
+                    base.$qgWrapper.animate({
+                        'left' : base.$pixelTablet
+                        });
                 }
 
             } else {
 
                 base.$qgWrapper.css({
                     'width': base.$widthWrapperOuter * (base.itemsAmount+1),
-                    'height': base.$widthWrapperOuter + base.$widthWrapperOuter*1/2
+                    // drin: reduced height for main container
+                    'height': (base.$widthWrapperOuter + base.$widthWrapperOuter*1/2) * 1/4
                     });
                 base.$qgItems.css({
                     'width': base.$widthWrapperOuter
                     });
                  base.$qgItems.find(".image-block").css({
                     'width': base.$widthWrapperOuter,
-                    'height': base.$widthWrapperOuter
+                    // drin: reduced height 
+                    'height': base.$widthWrapperOuter*2/3
                     });
                 if (base.browser.support3d === true) {
                     base.$qgWrapper.css(
-                    	base.doTranslate(base.$pixelTablet)
-                    	);
+                        base.doTranslate(base.$pixelTablet)
+                        );
                 } else {
-                	base.$qgWrapper.animate({
-                		'left' : base.$pixelTablet
-                		});
+                    base.$qgWrapper.animate({
+                        'left' : base.$pixelTablet
+                        });
                 }
             };
         },
@@ -288,17 +292,17 @@ if (typeof Object.create !== "function") {
                 if (base.browser.support3d === true) {
                     base.transition3d();
                 } else {
-                	base.css2move();
+                    base.css2move();
                 }
             } else {
-            	
+                
                 base.currentItem += 1;
                 base.$elem.find(".qg-item.active").removeClass("active").next().addClass("active");
 
                 if (base.browser.support3d === true) {
                     base.transition3d();
                 } else {
-                	base.css2move();
+                    base.css2move();
                 }
             };
         },
@@ -319,17 +323,17 @@ if (typeof Object.create !== "function") {
                 if (base.browser.support3d === true) {
                     base.transition3d();
                 } else {
-                	base.css2move();
+                    base.css2move();
                 }
             } else {
 
                 base.currentItem -= 1;
-				base.$elem.find(".qg-item.active").removeClass("active").prev().addClass("active");
+                base.$elem.find(".qg-item.active").removeClass("active").prev().addClass("active");
 
                 if (base.browser.support3d === true) {
                     base.transition3d();
                 } else {
-                	base.css2move();
+                    base.css2move();
                 }
             };
 
@@ -364,25 +368,26 @@ if (typeof Object.create !== "function") {
         },
 
         transitionItemDesc : function () {
-        	var base = this;
+            var base = this;
 
-        	base.$qgItems.css({
+            base.$qgItems.css({
                 'width': base.$itemWidth,
                 '-webkit-transition' : 'width',
-				'transition' : 'width'
+                'transition' : 'width'
                 });
             base.$qgItems.find(".image-block").css({
                 'width': base.$itemWidth-base.$columnGap,
-                'height': base.$itemWidth-base.$columnGap
+                // drin: reduced height for smaller images container
+                'height': (base.$itemWidth-base.$columnGap)*2/3*2/3
                 });
             base.$elem.find(".qg-item.active").css({
                 'width': base.$itemWidth*3 - base.$columnGap,
                 '-webkit-transition' : 'width',
-				'transition' : 'width'
+                'transition' : 'width'
                 });
             base.$elem.find(".qg-item.active").find(".image-block").css({
                 'width': base.$imageWidth,
-                'height': base.$imageWidth
+                'height': base.$imageWidth*2/3
                 });
         },
 
@@ -394,17 +399,17 @@ if (typeof Object.create !== "function") {
             
             if ($(window).width() >= 768) {
                 base.$qgWrapper.css(
-                	base.doTranslate(base.$pixelDesctop)
-                	);
-               	base.transitionItemDesc();
+                    base.doTranslate(base.$pixelDesctop)
+                    );
+                base.transitionItemDesc();
             } else if ($(window).width() >= 480) {
                 base.$qgWrapper.css(
-                	base.doTranslate(base.$pixelTablet)
-                	);
+                    base.doTranslate(base.$pixelTablet)
+                    );
             } else {
                 base.$qgWrapper.css(
-                	base.doTranslate(base.$pixelTablet)
-                	);
+                    base.doTranslate(base.$pixelTablet)
+                    );
             };
         },
 
@@ -414,31 +419,31 @@ if (typeof Object.create !== "function") {
             base.$pixelDesctop = -base.currentItem * base.$itemWidth;
             base.$pixelTablet = -base.currentItem * base.$widthWrapperOuter;
 
- 			base.isCssFinish = false;
+            base.isCssFinish = false;
 
             if ($(window).width() >= 768) {
                 base.$qgWrapper.animate({
-                	"left" : base.$pixelDesctop 
+                    "left" : base.$pixelDesctop 
                 },600, "swing");
                 base.css2ItemDesc();
             } else if ($(window).width() >= 480) {
                 base.$qgWrapper.stop(true, true).animate({
-                	"left" : base.$pixelTablet 
+                    "left" : base.$pixelTablet 
                 });
             } else {
                 base.$qgWrapper.stop(true, true).animate({
-                	"left" : base.$pixelTablet 
+                    "left" : base.$pixelTablet 
                 });
             };
         },
 
-		css2ItemDesc : function () { 
-			var base = this;
+        css2ItemDesc : function () { 
+            var base = this;
 
-        	base.$qgItems.animate({
+            base.$qgItems.animate({
                 'width': base.$itemWidth,
                 },600, "swing");
-        	            base.$elem.find(".qg-item.active").animate({
+                        base.$elem.find(".qg-item.active").animate({
                 'width': base.$itemWidth*3,
                 },600, "swing");
             base.$qgItems.find(".image-block").animate({
@@ -450,7 +455,7 @@ if (typeof Object.create !== "function") {
                 'width': base.$imageWidth,
                 'height': base.$imageWidth
                 },600, "swing");
-		},
+        },
 
 //******** touch event
 
@@ -461,7 +466,7 @@ if (typeof Object.create !== "function") {
             }
         },
 
-		eventTypes : function () {
+        eventTypes : function () {
             var base = this,
                 types = ["s", "e", "x"];
 
@@ -490,14 +495,14 @@ if (typeof Object.create !== "function") {
             base.ev_types.start = types[0];
             base.ev_types.move = types[1];
             base.ev_types.end = types[2];
-        	
+            
         },
 
- 		gestures : function () {
- 			var base = this,
- 				is_down = false,
- 				is_move = false,
- 			    locals = {
+        gestures : function () {
+            var base = this,
+                is_down = false,
+                is_move = false,
+                locals = {
                     offsetX : 0,
                     offsetY : 0,
                     relativePos : 0,
@@ -533,7 +538,7 @@ if (typeof Object.create !== "function") {
                 }
             }
 
- 			function swapEvents(type) {
+            function swapEvents(type) {
                 if (type === "on") {
                     $(document).on(base.ev_types.move, dragMove);
                     $(document).on(base.ev_types.end, dragEnd);
@@ -544,7 +549,7 @@ if (typeof Object.create !== "function") {
             }
 
             function dragStart(event) {
-            	var ev = event.originalEvent || event || window.event,
+                var ev = event.originalEvent || event || window.event,
                     position;
 
                 base.newPosX = 0;
@@ -562,12 +567,12 @@ if (typeof Object.create !== "function") {
 
                 locals.sliding = false;
                 locals.targetElement = ev.target || ev.srcElement;
-            	}
+                }
 
             function dragMove(event) {
-				var ev = event.originalEvent || event || window.event;
+                var ev = event.originalEvent || event || window.event;
 
-				base.newPosX = getTouches(ev).x - locals.offsetX;
+                base.newPosX = getTouches(ev).x - locals.offsetX;
                 base.newPosY = getTouches(ev).y - locals.offsetY;
                 base.newRelativeX = base.newPosX - locals.relativePos;
                 base.tempPositionDesc = base.$pixelDesctop + base.newRelativeX;
@@ -587,30 +592,30 @@ if (typeof Object.create !== "function") {
                 }
 
                 if ($(window).width() >= 768) {
-	                if (base.browser.support3d === true) {
-	                    base.$qgWrapper.css(
-	                    	base.doTranslate(base.tempPositionDesc)
-	                    	);
-	                } else {
-	                	base.$qgWrapper.css({
-		                    'left':  base.tempPositionDesc
-		                	});
-	                	}
-				} else {
-		            if (base.browser.support3d === true) {
-						base.$qgWrapper.css(
-							base.doTranslate(base.tempPositionTablets)
-							);
-	                } else {
-	                	base.$qgWrapper.css({
-		                    'left': base.tempPositionTablets
-		                	});
-	                	}
-					};
-            	}
+                    if (base.browser.support3d === true) {
+                        base.$qgWrapper.css(
+                            base.doTranslate(base.tempPositionDesc)
+                            );
+                    } else {
+                        base.$qgWrapper.css({
+                            'left':  base.tempPositionDesc
+                            });
+                        }
+                } else {
+                    if (base.browser.support3d === true) {
+                        base.$qgWrapper.css(
+                            base.doTranslate(base.tempPositionTablets)
+                            );
+                    } else {
+                        base.$qgWrapper.css({
+                            'left': base.tempPositionTablets
+                            });
+                        }
+                    };
+                }
 
             function dragEnd(event) {
-             	var ev = event.originalEvent || event || window.event,
+                var ev = event.originalEvent || event || window.event,
                     newPosition,
                     handlers,
                     qgStopEvent;
@@ -619,17 +624,17 @@ if (typeof Object.create !== "function") {
                 locals.dragging = false;
 
                 base.$qgWrapper.css(
-	            	base.addCssSpeed(base.options.slideSpeed)
-	            	)
- 				if (base.newRelativeX !== 0) {
+                    base.addCssSpeed(base.options.slideSpeed)
+                    )
+                if (base.newRelativeX !== 0) {
 
-	 				if (base.newRelativeX < 0) {
-	                    base.dragDirection = locals.dragDirection = "left";
-	                    base.next();
-	                } else {
-	                    base.dragDirection = locals.dragDirection = "right";
-	                    base.prev();
-	                }
+                    if (base.newRelativeX < 0) {
+                        base.dragDirection = locals.dragDirection = "left";
+                        base.next();
+                    } else {
+                        base.dragDirection = locals.dragDirection = "right";
+                        base.prev();
+                    }
 
                     if (locals.targetElement === ev.target) {
                         $(ev.target).on("click.disable", function (ev) {
@@ -639,12 +644,12 @@ if (typeof Object.create !== "function") {
                         handlers = $.data(ev.target, "events").click;
                         qgStopEvent = handlers.pop();
                         handlers.splice(0, 0, qgStopEvent);
-                    }	
-            	}
-            	swapEvents("off");
+                    }   
+                }
+                swapEvents("off");
             }
             base.$elem.on(base.ev_types.start, ".qg-wrapper", dragStart);
- 		},
+        },
     };
 
     $.fn.qgCarousel = function (options) {
