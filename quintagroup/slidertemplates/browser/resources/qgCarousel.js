@@ -211,7 +211,7 @@ if (typeof Object.create !== "function") {
 
                 base.$qgWrapper.css({
                     'width': base.$itemWidth * (base.itemsAmount+3),
-                    // drin: reduced height for main container
+                    // drin: reduces height for main container
                     'height' : (base.$imageWidth * 2 + base.$columnGap) * 1/4
                     });
                 base.transitionItemDesc();
@@ -229,8 +229,7 @@ if (typeof Object.create !== "function") {
 
                 base.$qgWrapper.css({
                     'width': base.$widthWrapperOuter * (base.itemsAmount+1),
-                    // drin: reduced height for main container
-                    'height' : base.$widthWrapperOuter*2/3 * 1/4
+                    'height' : base.$widthWrapperOuter*2/3 *2/3
                     });
                 base.$qgItems.css({
                     'width': base.$widthWrapperOuter
@@ -253,15 +252,14 @@ if (typeof Object.create !== "function") {
 
                 base.$qgWrapper.css({
                     'width': base.$widthWrapperOuter * (base.itemsAmount+1),
-                    // drin: reduced height for main container
-                    'height': (base.$widthWrapperOuter + base.$widthWrapperOuter*1/2) * 1/4
+                    'height': base.$widthWrapperOuter + base.$widthWrapperOuter*2/3
                     });
                 base.$qgItems.css({
                     'width': base.$widthWrapperOuter
                     });
                  base.$qgItems.find(".image-block").css({
                     'width': base.$widthWrapperOuter,
-                    // drin: reduced height 
+                    // drin: reduces height for active image container
                     'height': base.$widthWrapperOuter*2/3
                     });
                 if (base.browser.support3d === true) {
@@ -377,7 +375,7 @@ if (typeof Object.create !== "function") {
                 });
             base.$qgItems.find(".image-block").css({
                 'width': base.$itemWidth-base.$columnGap,
-                // drin: reduced height for smaller images container
+                // drin: reduceS height for smaller images container
                 'height': (base.$itemWidth-base.$columnGap)*2/3*2/3
                 });
             base.$elem.find(".qg-item.active").css({
